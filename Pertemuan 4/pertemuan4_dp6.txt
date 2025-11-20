@@ -1,0 +1,110 @@
+*****
+****
+***
+**
+*
+
+Buatlah program kasir sederhana 
+untuk restoran IKLC dengan ketentuan berikut:
+
+1. Terdapat 3 menu:
+- Nasi Goreng — Rp15.000
+- Mie Goreng — Rp12.000
+- Es Teh — Rp5.000
+2. Program berjalan dalam looping, menampilkan daftar menu 
+dan meminta pengguna memilih item serta jumlah pesanan.
+3. Jika pengguna memilih “N” saat ditanya ingin menambah pesanan, 
+program menampilkan total harga lalu berhenti.
+4. Gunakan repeat–until, case of, dan break/continue/exit 
+untuk mengatur alur program.
+
+Masukkan pilihan selain 1–4 → apakah tampil “Pilihan tidak valid!”?
+Ketik huruf kecil n saat ditanya lanjut → apakah program berhenti dengan total akhir?
+Masukkan pesanan lebih dari 1 kali → apakah total dijumlahkan dengan benar?
+
+Mengapa kita menggunakan repeat–until dalam kasus kasir ini, bukan for atau while?
+Apa perbedaan break dan continue dalam struktur loop di program ini?
+Kapan waktu yang tepat untuk menggunakan exit, dan apa bedanya dengan break?
+
+(*
+Nama  : 
+NIM   : 
+Kelompok : 
+*)
+
+program KasirRestoran;
+uses crt;
+
+var
+  pilihan, jumlah, total, harga, subtotal : integer;
+  ulang : char;
+  namaMenu : string;
+
+begin
+  clrscr;
+  total := 0;
+
+  writeln('=== KASIR RESTORAN IKLC ===');
+  writeln;
+
+  repeat
+    writeln('Daftar Menu:');
+    writeln('1. Nasi Goreng - Rp15000');
+    writeln('2. Mie Goreng  - Rp12000');
+    writeln('3. Es Teh      - Rp5000');
+    writeln('4. Selesai');
+    writeln;
+
+    write('Pilih menu (1-4): ');
+    readln(pilihan);
+
+    case pilihan of
+      1: begin
+           namaMenu := 'Nasi Goreng';
+           harga := 15000;
+         end;
+      2: begin
+           namaMenu := 'Mie Goreng';
+           harga := 12000;
+         end;
+      3: begin
+           namaMenu := 'Es Teh';
+           harga := 5000;
+         end;
+      4: begin
+           writeln('Selesai memilih menu.');
+           break;
+         end;
+    else
+      writeln('Pilihan tidak valid!');
+      continue;
+    end;
+
+    (* TODO 1: Input jumlah pesanan dan hitung subtotal *)
+    write('Masukkan jumlah pesanan ', namaMenu, ': ');
+    readln(jumlah);
+    subtotal := harga * jumlah;
+
+    (* TODO 2: Tambahkan subtotal ke total keseluruhan *)
+    total := total + subtotal;
+    writeln('Pesanan berhasil ditambahkan. Subtotal: Rp', subtotal);
+    writeln;
+
+    (* TODO 3: Tanya apakah ingin memesan lagi *)
+    write('Tambah pesanan lagi? (Y/N): ');
+    readln(ulang);
+
+    if (ulang = 'N') or (ulang = 'n') then
+      break;
+
+  until (pilihan = 4);
+
+  writeln;
+  writeln('===========================');
+  writeln('Total Keseluruhan: Rp', total);
+  writeln('Terima kasih telah berbelanja!');
+  writeln('===========================');
+
+  (* TODO 4: Gunakan exit untuk menutup program *)
+  exit;
+end.
