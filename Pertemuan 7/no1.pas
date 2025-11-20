@@ -1,4 +1,3 @@
-program BiodataMahasiswa;
 uses crt;
 
 {--------------------------------------------}
